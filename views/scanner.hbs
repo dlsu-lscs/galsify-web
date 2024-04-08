@@ -1,0 +1,22 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner</title>
+    <link rel="stylesheet" href="barcode.css">
+</head>
+<body onload="main();">
+    <div class="container">
+        <h1>{{eventName}}</h1>
+        <h2 id="eventid">{{eventId}}</h2>
+        <div class="left">
+            <div id="reader" width="600px"></div>
+            <!-- Content for the left side -->
+        </div>
+        <div class="right">
+            <h1 class="data">{{userData}}</h1>
+            <!-- Content for the right side -->
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<script src="barcode.js" type="text/javascript"></script>
