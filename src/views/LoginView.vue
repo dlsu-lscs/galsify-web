@@ -16,6 +16,7 @@ function login() {
             <input type="text" v-model="username" name="username" placeholder="Username" />
             <input type="password" v-model="password" name="password" placeholder="Password" />
             <button type="submit" @click.prevent="login">Login</button>
+            <small><a href="/register">Create Account</a></small>
         </form>
     </div>
 </template>
