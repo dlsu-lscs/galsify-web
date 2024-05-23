@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
-@import url('./login-register.css');
 
 /* Define color variables */
 :root {
@@ -42,6 +41,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    font-size: smaller;
 }
 
 .login-form input {
