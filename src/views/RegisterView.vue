@@ -8,16 +8,28 @@ const username = ref('')
 const password = ref('')
 
 function register() {
-    alert('Not implemented yet')
+    const msg = validate()
+
+    if (msg) {
+        alert(msg)
+    } else {
+        alert('Validation successful - Registration not yet implemented')
+    }
+}
+
+function validate() {
+    if (!email.value.endsWith('@dlsu.edu.ph')) {
+        return 'Email entered is not a valid DLSU email address'
+    }
 }
 </script>
 
 <template>
     <div class="login-container">
         <h2>Register</h2>
-        <form class="login-form">
-            <input type="email" v-model="email" name="email" placeholder="DLSU Email" />
-            <input type="text" v-model="username" name="username" placeholder="Username" />
+        <form class="login-form" @submit.prevent="register">
+            <input type="email" v-model="email" name="email" placeholder="DLSU Email" required />
+            <input type="text" v-model="username" name="username" placeholder="Username" required />
             <input
                 :type="showPassword ? 'text' : 'password'"
                 v-model="password"
@@ -34,8 +46,8 @@ function register() {
                     />Show Password
                 </label>
             </div>
-            <button type="submit" @click.prevent="register">Register</button>
-            <a href="/login">Login</a>
+            <button type="submit">Register</button>
+            <a href="/login">Go to Login</a>
         </form>
     </div>
 </template>
