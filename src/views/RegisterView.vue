@@ -35,7 +35,7 @@ function register() {
                 </label>
             </div>
             <button type="submit" @click.prevent="register">Register</button>
-            <small><a href="/login">Login</a></small>
+            <a href="/login">Login</a>
         </form>
     </div>
 </template>
