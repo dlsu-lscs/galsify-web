@@ -10,29 +10,27 @@ function logout() {
 
 <template>
     <div class="window-container">
-        <v-layout>
-            <v-app-bar dense id="navbar">
-                <div class="navbar-title">GALSify</div>
+        <v-app-bar dense id="navbar">
+            <div class="navbar-title">GALSify</div>
 
-                <v-tabs>
-                    <v-tab>Manage Members</v-tab>
-                    <v-tab>Manage Events</v-tab>
-                </v-tabs>
+            <v-tabs>
+                <v-tab>Manage Members</v-tab>
+                <v-tab>Manage Events</v-tab>
+            </v-tabs>
 
-                <template v-slot:append>
-                    <v-menu>
-                        <template v-slot:activator="{ props }">
-                            <v-btn icon="mdi-account" v-bind="props"></v-btn>
-                        </template>
+            <template v-slot:append>
+                <v-menu>
+                    <template v-slot:activator="{ props }">
+                        <v-btn icon="mdi-account" v-bind="props"></v-btn>
+                    </template>
 
-                        <v-list>
-                            <v-list-item @click="viewProfile">Profile</v-list-item>
-                            <v-list-item @click="logout">Logout</v-list-item>
-                        </v-list>
-                    </v-menu>
-                </template>
-            </v-app-bar>
-        </v-layout>
+                    <v-list>
+                        <v-list-item @click="viewProfile">Profile</v-list-item>
+                        <v-list-item @click="logout">Logout</v-list-item>
+                    </v-list>
+                </v-menu>
+            </template>
+        </v-app-bar>
     </div>
 </template>
 
