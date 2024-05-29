@@ -1,5 +1,7 @@
-<script></script>
+<script setup>
+import TopNavigationBar from '@/components/TopNavigationBar.vue'
+</script>
 
 <template>
-    <p>DashboardView</p>
+    <TopNavigationBar />
 </template>
