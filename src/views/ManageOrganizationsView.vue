@@ -9,17 +9,14 @@ import NavigationBar from '@/components/NavigationBar.vue'
 
             <!-- Navigation Drawer (Left of screen) -->
             <v-navigation-drawer permanent="">
-                <v-list-item>
-                    <v-text-field prepend-icon="mdi-magnify" label="Search Events"> </v-text-field>
-                </v-list-item>
+                <!-- A search bar shouldn't be needed for orgs since they shouldn't be that many, but in case -->
+                <!-- <v-list-item>
+                    <v-text-field prepend-icon="mdi-magnify" label="Search Orgs"> </v-text-field>
+                </v-list-item> -->
 
-                <v-list-item link v-for="i in 3" :key="i" :title="'Event Name ' + i"></v-list-item>
-
-                <template v-slot:append>
-                    <v-container>
-                        <v-btn class="event-list-add" variant="outlined">Add New Event</v-btn>
-                    </v-container>
-                </template>
+                <v-list-item link title="Organization 1"></v-list-item>
+                <v-list-item link title="Organization 2"></v-list-item>
+                <v-list-item link title="Organization 3"></v-list-item>
             </v-navigation-drawer>
 
             <v-main>
@@ -27,24 +24,17 @@ import NavigationBar from '@/components/NavigationBar.vue'
                     <v-row>
                         <v-col>
                             <v-card>
-                                <template v-slot:title>
-                                    <span class="event-title">Event Title</span>
-                                </template>
+                                <v-card-title class="event-title">Organization Name</v-card-title>
+
                                 <v-card-text>
-                                    Event Description Lorem ipsum dolor sit amet consectetur
+                                    Organization Description Lorem ipsum dolor sit amet consectetur
                                     adipisicing elit. Commodi, ratione debitis quis est labore
                                     voluptatibus! Eaque cupiditate minima, at placeat totam, magni
                                     doloremque veniam neque porro libero rerum unde voluptatem!
                                 </v-card-text>
-
-                                <v-divider></v-divider>
-                                <v-list>
-                                    <v-list-item> 3 Pre-Registered </v-list-item>
-                                    <v-list-item> 3 filled up GALS </v-list-item>
-                                </v-list>
                                 <v-card-actions>
-                                    <v-btn variant="outlined">Upload Pre-registration Form</v-btn>
-                                    <v-btn variant="outlined">Export GALS Sheet</v-btn>
+                                    <v-btn variant="outlined">Edit</v-btn>
+                                    <v-btn variant="outlined">View Organization Events</v-btn>
                                 </v-card-actions>
                             </v-card>
                         </v-col>
@@ -52,15 +42,25 @@ import NavigationBar from '@/components/NavigationBar.vue'
                             <v-card>
                                 <v-list density="compact">
                                     <v-list-item>
-                                        <h2>Moderators</h2>
+                                        <h2>Members</h2>
                                         <template v-slot:append>
                                             <v-icon icon="mdi-plus"></v-icon>
                                         </template>
                                     </v-list-item>
-
+                                    <v-list-subheader>Administrators</v-list-subheader>
                                     <v-list-item v-for="i in 3" :key="i">
-                                        Account {{ i }}
+                                        Member {{ i }}
                                         <template v-slot:append>
+                                            <v-icon icon="mdi-square-edit-outline"></v-icon>
+                                            <v-icon icon="mdi-trash-can-outline"></v-icon>
+                                        </template>
+                                    </v-list-item>
+
+                                    <v-list-subheader>Event Managers</v-list-subheader>
+                                    <v-list-item v-for="i in 3" :key="i">
+                                        Member {{ i + 3 }}
+                                        <template v-slot:append>
+                                            <v-icon icon="mdi-square-edit-outline"></v-icon>
                                             <v-icon icon="mdi-trash-can-outline"></v-icon>
                                         </template>
                                     </v-list-item>
@@ -95,5 +95,9 @@ import NavigationBar from '@/components/NavigationBar.vue'
 .event-list-add {
     margin-left: auto;
     margin-right: auto;
+}
+
+.v-icon {
+    margin-left: 4px;
 }
 </style>
