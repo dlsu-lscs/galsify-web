@@ -25,7 +25,7 @@ import NavigationBar from '@/components/NavigationBar.vue'
             <v-main>
                 <v-container>
                     <v-row>
-                        <v-col>
+                        <v-col cols="7">
                             <v-card>
                                 <template v-slot:title>
                                     <span class="event-title">Event Title</span>
@@ -48,7 +48,7 @@ import NavigationBar from '@/components/NavigationBar.vue'
                                 </v-card-actions>
                             </v-card>
                         </v-col>
-                        <v-col>
+                        <v-col cols="5">
                             <v-card>
                                 <v-list density="compact">
                                     <v-list-item>
