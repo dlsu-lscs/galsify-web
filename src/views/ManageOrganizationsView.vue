@@ -9,10 +9,9 @@ import NavigationBar from '@/components/NavigationBar.vue'
 
             <!-- Navigation Drawer (Left of screen) -->
             <v-navigation-drawer permanent="">
-                <!-- A search bar shouldn't be needed for orgs since they shouldn't be that many, but in case -->
-                <!-- <v-list-item>
+                <v-list-item>
                     <v-text-field prepend-icon="mdi-magnify" label="Search Orgs"> </v-text-field>
-                </v-list-item> -->
+                </v-list-item>
 
                 <v-list-item link title="Organization 1"></v-list-item>
                 <v-list-item link title="Organization 2"></v-list-item>
