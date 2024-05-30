@@ -14,8 +14,8 @@ function logout() {
             <div class="navbar-title">GALSify</div>
 
             <v-tabs>
-                <v-tab>Manage Members</v-tab>
-                <v-tab>Manage Events</v-tab>
+                <v-tab key="members" to="/members">Manage Members</v-tab>
+                <v-tab key="events" to="/events">Manage Events</v-tab>
             </v-tabs>
 
             <template v-slot:append>
