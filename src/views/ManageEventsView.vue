@@ -1,11 +1,11 @@
 <script setup>
-import TopNavigationBar from '@/components/TopNavigationBar.vue'
+import NavigationBar from '@/components/NavigationBar.vue'
 </script>
 
 <template>
     <div class="window-container">
         <v-layout>
-            <TopNavigationBar />
+            <NavigationBar />
 
             <!-- Navigation Drawer (Left of screen) -->
             <v-navigation-drawer permanent="">
