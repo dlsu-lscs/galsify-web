@@ -13,7 +13,7 @@ function register() {
     if (msg) {
         alert(msg)
     } else {
-        alert('Validation successful - Registration not yet implemented')
+        window.location.href = '/dashboard'
     }
 }
 
@@ -25,29 +25,117 @@ function validate() {
 </script>
 
 <template>
-    <div class="login-container">
-        <h2>Register</h2>
-        <form class="login-form" @submit.prevent="register">
-            <input type="email" v-model="email" name="email" placeholder="DLSU Email" required />
-            <input type="text" v-model="username" name="username" placeholder="Username" required />
-            <input
-                :type="showPassword ? 'text' : 'password'"
-                v-model="password"
-                name="password"
-                placeholder="Password"
-            />
-            <div class="login-show-password">
-                <label for="login-show-password">
-                    <input
-                        type="checkbox"
-                        v-model="showPassword"
-                        name="showPassword"
-                        id="login-show-password"
-                    />Show Password
-                </label>
-            </div>
-            <button type="submit">Register</button>
-            <a href="/login">Go to Login</a>
-        </form>
+    <div class="window-container">
+        <div class="register-container">
+            <h2>Register</h2>
+            <form class="register-form" @submit.prevent="register">
+                <input
+                    type="email"
+                    v-model="email"
+                    name="email"
+                    placeholder="DLSU Email"
+                    required
+                />
+                <input
+                    type="text"
+                    v-model="username"
+                    name="username"
+                    placeholder="Username"
+                    required
+                />
+                <input
+                    :type="showPassword ? 'text' : 'password'"
+                    v-model="password"
+                    name="password"
+                    placeholder="Password"
+                />
+                <div class="login-show-password">
+                    <label for="login-show-password">
+                        <input
+                            type="checkbox"
+                            v-model="showPassword"
+                            name="showPassword"
+                            id="login-show-password"
+                        />Show Password
+                    </label>
+                </div>
+                <button type="submit">Register</button>
+                <a href="/login">Go to Login</a>
+            </form>
+        </div>
     </div>
 </template>
+
+<style scoped>
+.window-container {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: var(--darkest-black);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.register-container {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Adjust width as needed */
+    height: auto; /* Adjust height as needed */
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-container h2 {
+    margin-right: 20px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: smaller;
+}
+
+.register-form input {
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.register-form button {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--light-green);
+    color: var(--white);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .register-container {
+        flex-direction: column;
+        height: auto;
+        width: 80%;
+    }
+
+    .register-container h2 {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .register-form input {
+        margin-bottom: 10px;
+    }
+}
+</style>
