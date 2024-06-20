@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-// import axios from '@/requests/axiosInstance.js'
-import axios from 'axios'
+import api from '@/axios/axiosInstance.js'
 import { jwtDecode } from 'jwt-decode'
 
 import router from '@/router'
@@ -19,11 +18,9 @@ async function register() {
         return
     }
 
-    const res = await axios.post('//127.0.0.1:3000/auth/signup', {
-        data: {
-            email: email.value,
-            password: password.value
-        }
+    const res = await api.post('/auth/signup', {
+        email: email.value,
+        password: password.value
     })
 
     if (res.data.status === 'success') {
@@ -152,3 +149,4 @@ function validate() {
     }
 }
 </style>
+@/axios/axiosInstance.js

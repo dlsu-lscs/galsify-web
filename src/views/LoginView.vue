@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios'
+import api from '@/axios/axiosInstance.js'
 import { jwtDecode } from 'jwt-decode'
 
 import router from '@/router'
@@ -18,14 +18,10 @@ async function login() {
         return
     }
 
-    const res = await axios.post('//127.0.0.1:3000/auth/login', {
-        data: {
-            email: email.value,
-            password: password.value
-        }
+    const res = await api.post('/auth/login', {
+        email: email.value,
+        password: password.value
     })
-
-    console.log(res)
 
     if (res.data.status == 'success') {
         const token = jwtDecode(res.data.token)
