@@ -9,7 +9,6 @@ function viewProfile() {
 
 function logout() {
     window.$cookies.remove('credentials')
-    alert('Logout not implemented yet')
 
     router.replace({ name: 'Login' })
 }

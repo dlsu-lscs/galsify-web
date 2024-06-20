@@ -33,9 +33,8 @@ async function register() {
 
         return router.replace({ name: 'Manage Events' })
     } else {
-        alert(res.errors.join('\n'))
+        alert(res.data.errors.join('\n'))
     }
-    console.log(res)
 }
 
 function validate() {
