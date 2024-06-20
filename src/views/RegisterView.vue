@@ -1,19 +1,36 @@
 <script setup>
 import { ref } from 'vue'
+import api from '@/axios/axiosInstance.js'
+import { jwtDecode } from 'jwt-decode'
+
+import router from '@/router'
 
 const showPassword = ref(false)
 
 const email = ref('')
-const username = ref('')
 const password = ref('')
 
-function register() {
+async function register() {
     const msg = validate()
 
     if (msg) {
         alert(msg)
+        return
+    }
+
+    const res = await api.post('/auth/signup', {
+        email: email.value,
+        password: password.value
+    })
+
+    if (res.data.status === 'success') {
+        // TODO: change to using refresh tokens?
+        const token = jwtDecode(res.data.token)
+        window.$cookies.set('credentials', token, new Date(token.exp * 1000))
+
+        return router.replace({ name: 'Manage Events' })
     } else {
-        window.location.href = '/dashboard'
+        alert(res.data.errors.join('\n'))
     }
 }
 
@@ -34,13 +51,6 @@ function validate() {
                     v-model="email"
                     name="email"
                     placeholder="DLSU Email"
-                    required
-                />
-                <input
-                    type="text"
-                    v-model="username"
-                    name="username"
-                    placeholder="Username"
                     required
                 />
                 <input
@@ -139,3 +149,4 @@ function validate() {
     }
 }
 </style>
+@/axios/axiosInstance.js

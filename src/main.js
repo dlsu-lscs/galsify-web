@@ -5,6 +5,8 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
+import VueCookies from 'vue-cookies'
+
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
@@ -30,5 +32,6 @@ const app = createApp(App)
 app.use(router)
 app.use(createPinia())
 app.use(vuetify)
+app.use(VueCookies, { secure: true })
 
 app.mount('#app')

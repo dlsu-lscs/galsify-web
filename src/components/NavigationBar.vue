@@ -1,10 +1,16 @@
 <script setup>
+import router from '@/router'
+
 function viewProfile() {
+    console.log(window.$cookies.get('credentials'))
+
     alert('Profile not implemented yet')
 }
 
 function logout() {
-    alert('Logout not implemented yet')
+    window.$cookies.remove('credentials')
+
+    router.replace({ name: 'Login' })
 }
 </script>
 

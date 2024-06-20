@@ -1,13 +1,42 @@
 <script setup>
 import { ref } from 'vue'
+import api from '@/axios/axiosInstance.js'
+import { jwtDecode } from 'jwt-decode'
+
+import router from '@/router'
 
 const showPassword = ref(false)
 
-const username = ref('')
+const email = ref('')
 const password = ref('')
 
-function login() {
-    window.location.href = '/dashboard'
+async function login() {
+    const msg = validate()
+
+    if (msg) {
+        alert(msg)
+        return
+    }
+
+    const res = await api.post('/auth/login', {
+        email: email.value,
+        password: password.value
+    })
+
+    if (res.data.status == 'success') {
+        const token = jwtDecode(res.data.token)
+        window.$cookies.set('credentials', token, new Date(token.exp * 1000))
+
+        return router.replace({ name: 'Manage Events' })
+    } else {
+        alert(res.data.errors.join('\n'))
+    }
+}
+
+function validate() {
+    if (!email.value.endsWith('@dlsu.edu.ph')) {
+        return 'Email entered is not a valid DLSU email address'
+    }
 }
 </script>
 
@@ -15,13 +44,14 @@ function login() {
     <div class="window-container">
         <div class="login-container">
             <h2>Login</h2>
-            <form class="login-form">
-                <input type="text" v-model="username" name="username" placeholder="Username" />
+            <form class="login-form" @submit.prevent="login">
+                <input type="text" v-model="email" name="email" placeholder="DLSU Email" required />
                 <input
                     :type="showPassword ? 'text' : 'password'"
                     v-model="password"
                     name="password"
                     placeholder="Password"
+                    required
                 />
                 <div class="login-show-password">
                     <label for="login-show-password">
@@ -33,7 +63,7 @@ function login() {
                         />Show Password
                     </label>
                 </div>
-                <button type="submit" @click.prevent="login">Login</button>
+                <button type="submit">Login</button>
 
                 <a href="/register">Create Account</a>
             </form>
