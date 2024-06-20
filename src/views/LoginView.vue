@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import axios from '@/requests/axiosInstance.js'
 
 const showPassword = ref(false)
 
@@ -7,7 +8,7 @@ const username = ref('')
 const password = ref('')
 
 function login() {
-    window.location.href = '/dashboard'
+    console.log(window.$cookies.get('credentials'))
 }
 </script>
 

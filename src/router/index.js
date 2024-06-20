@@ -11,7 +11,12 @@ const router = createRouter({
         {
             path: '/',
             name: 'Login',
-            component: LoginView
+            component: LoginView,
+            beforeEnter: (to, from, next) => {
+                const credentials = window.$cookies.get('credentials')
+                if (credentials && credentials.user_id) next({ name: 'Manage Events' })
+                else next()
+            }
         },
         {
             path: '/login',
@@ -22,17 +27,32 @@ const router = createRouter({
         {
             path: '/register',
             name: 'Register',
-            component: RegisterView
+            component: RegisterView,
+            beforeEnter: (to, from, next) => {
+                const credentials = window.$cookies.get('credentials')
+                if (credentials && credentials.user_id) next({ name: 'Manage Events' })
+                else next()
+            }
         },
         {
             path: '/events',
             name: 'Manage Events',
-            component: ManageEventsView
+            component: ManageEventsView,
+            beforeEnter: (to, from, next) => {
+                const credentials = window.$cookies.get('credentials')
+                if (!credentials || !credentials.user_id) next({ name: 'Login' })
+                else next()
+            }
         },
         {
             path: '/organizations',
             name: 'Manage Organizations',
-            component: ManageOrganizationsView
+            component: ManageOrganizationsView,
+            beforeEnter: (to, from, next) => {
+                const credentials = window.$cookies.get('credentials')
+                if (!credentials || !credentials.user_id) next({ name: 'Login' })
+                else next()
+            }
         },
         {
             path: '/dashboard',

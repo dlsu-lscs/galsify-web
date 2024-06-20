@@ -1,20 +1,41 @@
 <script setup>
 import { ref } from 'vue'
+// import axios from '@/requests/axiosInstance.js'
+import axios from 'axios'
+import { jwtDecode } from 'jwt-decode'
+
+import router from '@/router'
 
 const showPassword = ref(false)
 
 const email = ref('')
-const username = ref('')
 const password = ref('')
 
-function register() {
+async function register() {
     const msg = validate()
 
     if (msg) {
         alert(msg)
-    } else {
-        window.location.href = '/dashboard'
+        return
     }
+
+    const res = await axios.post('//127.0.0.1:3000/auth/signup', {
+        data: {
+            email: email.value,
+            password: password.value
+        }
+    })
+
+    if (res.data.status === 'success') {
+        // TODO: change to using refresh tokens?
+        const token = jwtDecode(res.data.token)
+        window.$cookies.set('credentials', token, new Date(token.exp * 1000))
+
+        return router.replace({ name: 'Manage Events' })
+    } else {
+        alert(res.errors.join('\n'))
+    }
+    console.log(res)
 }
 
 function validate() {
@@ -34,13 +55,6 @@ function validate() {
                     v-model="email"
                     name="email"
                     placeholder="DLSU Email"
-                    required
-                />
-                <input
-                    type="text"
-                    v-model="username"
-                    name="username"
-                    placeholder="Username"
                     required
                 />
                 <input
